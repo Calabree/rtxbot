@@ -6,6 +6,7 @@
 
 **Currently Working:**
 - Best Buy
+
 **Currently Not Working:**
 - NewEgg
 - Amazon
@@ -14,13 +15,13 @@
 **Planned for next release**:
 - Making sure you are not re-alerted for the exact same item multiple times within the same stock period.
 ## How To Get Up and Running 
-**Step 1:**  Clone this project to your desired directory. 
+**Step 1:**  Clone this project to your desired directory.
 **Step 2:** Navigate to that directory and run the following:
 ```python
 #It is recommended that you run this in a virtual enviornment,
 pip install -r requirements.txt
 ```
-**Step 3:** Create a Best Buy developer account, and obtain an API key from them
+**Step 3:** Create a Best Buy developer account, and obtain an API key from them.
 **Step 4:** Make a new (or use your current one) Gmail. We will use this Gmail to notify you via email/text.
 YOU WILL NEED TO ALLOW LESS SECURE APPS. [FOLLOW THIS LINK](https://support.google.com/accounts/answer/6010255?hl=en)
 This is why I recommend you use a separate email account from your own.
