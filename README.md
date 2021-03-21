@@ -13,7 +13,6 @@
 
 **Planned for next release**:
 - Making sure you are not re-alerted for the exact same item multiple times within the same stock period.
-- Code overhaul to make the source code much easier to read and much more modular.
 ## How To Get Up and Running 
 **Step 1:**  Clone this project to your desired directory. 
 **Step 2:** Navigate to that directory and run the following:
