@@ -1,10 +1,12 @@
 from SendAlert import SendAlert
 from configparser import ConfigParser
 from BestBuyScan import BestBuyScanner
-import os
+from TimeBetweenAPICalls import APICallTimer
+import os,time
 
 sa = SendAlert()
 bbs= BestBuyScanner()
+timer= APICallTimer()
 parser = ConfigParser()
 #PARSES THROUGH config.ini FOR CONFIG VALUES
 parser.read('config.ini')
@@ -16,23 +18,27 @@ contactToNotify = parser.get('COMMON', 'NOTIFYCONTACT')
 
 def main():
     #TODO: ask user which rtx card they are looking 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clear()
     intro()
     print("""
     Welome to Calabree's RTX Stock Bot! Please select a card from the menu below:
-    1. RTX 3060/RTX 3060 TI
+    1. RTX 3060/RTX 3060 TI 
     2. RTX 3070
     3. RTX 3080
     4. RTX 3090
     """)
-    
-    card = Switch(input('please select a number from above '))
+    card = Switch(input('please select a number from above: '))
     parser['COMMON']['CARDNAME']=f'{card}'
-    print(card)
     with open('config.ini','w') as configfile:
         parser.write(configfile)
-    bbs.getJSONPageCount(key,card)
-    bbs.scanBBStock(key,card,email, password, contactToNotify, 465)
+    if (card == "Not A Valid Entry"):
+        return print("Err: Not a valid entry. The system will now terminate, please try again!")   
+    pageCount = bbs.getJSONPageCount(key,card)
+    waitTime = timer.timer(pageCount)
+    while True:
+        bbs.scanBBStock(key,card,email, password, contactToNotify, 465)
+        time.sleep(waitTime)
+
 
 def Switch(card):
     switch={
@@ -64,8 +70,10 @@ def intro():
 
 """)
     input("Press enter to continue...")
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clear()
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ =="__main__":
     main()
