@@ -20,6 +20,17 @@ def main():
     #TODO: ask user which rtx card they are looking 
     clear()
     intro()
+    
+#     Make this configurable. 
+#     You can make this more modular by adding each of those names to an array (list) and then 
+#      build this dynamically. 
+#  e.g. options = [{name="RTX 3070", value="3070"}, {name="RTX 3080", value="3080"}]... then append one line at a time, starting at 0 index. 
+#  then you dont need a switch statement, or even to update the code if you get more options.
+# for option in options:
+#    optionStr += option["name"]
+#  Or something like that. get rid of the switch its unecessary, 
+# 
+
     print("""
     Welome to Calabree's RTX Stock Bot! Please select a card from the menu below:
     1. RTX 3060/RTX 3060 TI 
@@ -29,6 +40,8 @@ def main():
     """)
     card = Switch(input('please select a number from above: '))
     parser['COMMON']['CARDNAME']=f'{card}'
+    
+#     You really shouldnt just assume the config is the same every time and clear it... otherwise why do you have a file? 
     with open('config.ini','w') as configfile:
         parser.write(configfile)
     if (card == "Not A Valid Entry"):
