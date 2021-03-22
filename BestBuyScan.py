@@ -21,6 +21,8 @@ class BestBuyScanner:
         count =0
         w=[]
         if(self.pageCount>=1):
+#             Dont do two different things based on 1 page or more. 
+#           just do the loop for every page, and make the get request every time.
             for i in range(self.pageCount):
                 x=i+1
 #                 Make this string a template above, and use a format sstatement here. 
@@ -35,6 +37,7 @@ class BestBuyScanner:
 #           see below you do w[c]["products"][j] when j is an index on w[c].json... this is wrong.
 #           get rid of this c and j stuff. make this more like...
 #           for product in response["products"]:   stop with these indexes.. (remember c is now named response because it makes sense.
+#  ----- Based on advice I gave above, the responses array can go away (you called it w...)
             for j in range(len(w[c].json())):
                 try:
                     print(f'''Product: {w[c].json()["products"][j]["name"]}\nPrice: {w[c].json()["products"][j]["salePrice"]}\nAvailability: {w[c].json()["products"][j]["orderable"]}\nURL:{w[c].json()["products"][j]["url"]}\n=====================================================================================================================''')
