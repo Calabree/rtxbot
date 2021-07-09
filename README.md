@@ -7,7 +7,7 @@
 **Currently Working:**
 - Best Buy
 
-**Currently Not Working:**
+**In Planning:**
 - NewEgg
 - Amazon
 - Stopping reoccurring emails on in stock products that you have been alerted on already. 
